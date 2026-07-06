@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Quote Generator</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Background Circles -->
+
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+
+    <div class="container">
+
+        <div class="card">
+
+            <!-- Header -->
+
+            <div class="header">
+
+                <h1>AI Quote Generator</h1>
+
+                <button id="theme-btn">
+
+                    🌙
+
+                </button>
+
+            </div>
+
+            <p class="subtitle">
+
+                Choose a category and generate an inspiring quote instantly.
+
+            </p>
+
+            <!-- Form -->
+
+            <form method="POST" action="/">
+
+                <label for="category">
+
+                    Select Category
+
+                </label>
+
+                <select id="category" name="category" required>
+
+                    {% for category in categories %}
+
+                    <option value="{{ category.value }}"
+                        {% if selected_category == category.value %}selected{% endif %}>
+
+                        {{ category.name }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+                <button class="generate-btn" type="submit">
+
+                    ✨ Generate Quote
+
+                </button>
+
+            </form>
+
+            <!-- Quote -->
+
+            <div class="quote-box">
+
+                <div class="quote-icon">
+
+                    ❝
+
+                </div>
+
+                {% if quote %}
+
+                <h2>
+
+                    {{ quote }}
+
+                </h2>
+
+                <h3>
+
+                    — {{ author }}
+
+                </h3>
+
+                {% else %}
+
+                <h2>
+
+                    No Quote Generated Yet
+
+                </h2>
+
+                <p>
+
+                    Select a category and click Generate Quote.
+
+                </p>
+
+                {% endif %}
+
+            </div>
+
+            <!-- Buttons -->
+
+            <div class="actions">
+
+                <button class="action-btn">
+
+                    📋 Copy
+
+                </button>
+
+                <button class="action-btn">
+
+                    ❤️ Favorite
+
+                </button>
+
+                <button class="action-btn">
+
+                    🔄 New Quote
+
+                </button>
+
+            </div>
+
+            <!-- Footer -->
+
+            <div class="footer">
+
+                Made with ❤️ using Flask & Python
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
