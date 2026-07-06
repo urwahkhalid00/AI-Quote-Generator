@@ -58,16 +58,73 @@ window.onload = () => {
 // Copy Quote
 // ===============================
 
+const toast = document.getElementById("toast");
+
 copyBtn.addEventListener("click", () => {
 
     navigator.clipboard.writeText(quote.innerText);
 
-    copyBtn.innerHTML = "✅ Copied";
+    toast.classList.add("show");
 
     setTimeout(() => {
 
-        copyBtn.innerHTML = "📋 Copy";
+        toast.classList.remove("show");
 
     },2000);
+
+});
+// ===============================
+// Loading Button
+// ===============================
+
+const form = document.querySelector("form");
+
+const generateBtn = document.querySelector(".generate-btn");
+
+form.addEventListener("submit", () => {
+
+    generateBtn.classList.add("loading");
+
+});
+
+// ===============================
+// Favorite Quote
+// ===============================
+
+const favoriteBtn = document.getElementById("favorite-btn");
+
+favoriteBtn.addEventListener("click", () => {
+
+    const favoriteQuote = {
+        quote: quote.innerText,
+        author: document.querySelector(".quote-box h3").innerText
+    };
+
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    // Duplicate check
+    const alreadyExists = favorites.some(item => item.quote === favoriteQuote.quote);
+
+    if (!alreadyExists) {
+
+        favorites.push(favoriteQuote);
+
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+
+        toast.innerHTML = "❤️ Added to Favorites";
+
+    } else {
+
+        toast.innerHTML = "Already in Favorites";
+
+    }
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 2000);
 
 });

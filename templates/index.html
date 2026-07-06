@@ -77,8 +77,10 @@
 
                 <button class="generate-btn" type="submit">
 
-                    ✨ Generate Quote
-
+                    <span class="btn-text">
+                       ✨ Generate Quote
+                    </span>
+                     <span class="spinner"></span>
                 </button>
 
             </form>
@@ -135,10 +137,8 @@
 
                 </button>
 
-                <button class="action-btn">
-
-                    ❤️ Favorite
-
+                <button class="action-btn" id="favorite-btn">
+                  ❤️ Favorite
                 </button>
 
                 <button class="action-btn">
@@ -159,6 +159,9 @@
 
         </div>
 
+    </div>
+    <div id="toast">
+    Quote copied successfully!
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
