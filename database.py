@@ -56,4 +56,17 @@ def get_favorites():
 
     return favorites
 
-    
+def delete_favorite(id):
+
+    conn = sqlite3.connect("quotes.db")
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        DELETE FROM favorites
+        WHERE id = ?
+    """, (id,))
+
+    conn.commit()
+
+    conn.close()

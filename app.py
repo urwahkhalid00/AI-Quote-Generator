@@ -1,5 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
-from database import create_database, save_favorite, get_favorites
+from database import (
+    create_database,
+    save_favorite,
+    get_favorites,
+    delete_favorite
+)
 import requests
 
 app = Flask(__name__)
@@ -64,7 +69,12 @@ def favorites():
         quotes=quotes
     )
     
-    
+@app.route("/delete/<int:id>", methods=["POST"])
+def delete(id):
+
+    delete_favorite(id)
+
+    return redirect(url_for("favorites"))   
     
 if __name__ == "__main__":
 
