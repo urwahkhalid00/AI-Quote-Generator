@@ -24,7 +24,15 @@
             <p>{{ quote[2] }}</p>
 
             <small>{{ quote[3] }}</small>
+            <form action="{{ url_for('delete', id=quote[0]) }}" method="POST">
 
+                <button type="submit">
+
+                 Delete
+
+                </button>
+
+            </form>
             <hr>
 
         {% endfor %}
