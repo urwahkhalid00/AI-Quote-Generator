@@ -25,20 +25,20 @@ def create_database():
 
     conn.close()
     
-# def save_favorite(quote, author, category):
+def save_favorite(quote, author, category):
 
-#     conn = sqlite3.connect("quotes.db")
+    conn = sqlite3.connect("quotes.db")
 
-#     cursor = conn.cursor()
+    cursor = conn.cursor()
 
-#     cursor.execute("""
-#         INSERT INTO favorites (quote, author, category)
-#         VALUES (?, ?, ?)
-#     """, (quote, author, category))
+    cursor.execute("""
+        INSERT INTO favorites (quote, author, category)
+        VALUES (?, ?, ?)
+    """, (quote, author, category))
 
-#     conn.commit()
+    conn.commit()
 
-#     conn.close()    
+    conn.close()    
     
 def get_favorites():
 
