@@ -40,21 +40,21 @@ def save_favorite(quote, author, category):
 
     conn.close()    
     
-# def get_favorites():
+def get_favorites():
 
-#     conn = sqlite3.connect("quotes.db")
+    conn = sqlite3.connect("quotes.db")
 
-#     cursor = conn.cursor()
+    cursor = conn.cursor()
 
-#     cursor.execute("""
-#         SELECT * FROM favorites
-#     """)
+    cursor.execute("""
+        SELECT * FROM favorites
+    """)
 
-#     favorites = cursor.fetchall()
+    favorites = cursor.fetchall()
 
-#     conn.close()
+    conn.close()
 
-#     return favorites
+    return favorites
 
 def delete_favorite(id):
 
