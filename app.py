@@ -59,15 +59,15 @@ def favorite():
 
     return redirect(url_for("home"))
 
-# @app.route("/favorites")
-# def favorites():
+@app.route("/favorites")
+def favorites():
 
-#     quotes = get_favorites()
+    quotes = get_favorites()
 
-#     return render_template(
-#         "favorites.html",
-#         quotes=quotes
-#     )
+    return render_template(
+        "favorites.html",
+        quotes=quotes
+    )
     
 @app.route("/delete/<int:id>", methods=["POST"])
 def delete(id):
