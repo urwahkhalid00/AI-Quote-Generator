@@ -552,6 +552,9 @@ option{
     flex-wrap:wrap;
 
 }
+.actions form{
+    margin: 0;
+}
 
 .action-btn{
 
