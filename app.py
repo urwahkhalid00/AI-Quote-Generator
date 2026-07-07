@@ -69,12 +69,12 @@ def favorites():
         quotes=quotes
     )
     
-@app.route("/delete/<int:id>", methods=["POST"])
-def delete(id):
+# @app.route("/delete/<int:id>", methods=["POST"])
+# def delete(id):
 
-    delete_favorite(id)
+#     delete_favorite(id)
 
-    return redirect(url_for("favorites"))   
+#     return redirect(url_for("favorites"))   
     
 if __name__ == "__main__":
 
