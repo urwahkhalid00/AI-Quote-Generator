@@ -1,6 +1,5 @@
 import sqlite3
 
-
 def create_database():
 
     conn = sqlite3.connect("quotes.db")
@@ -25,6 +24,7 @@ def create_database():
 
     conn.close()
     
+    
 def save_favorite(quote, author, category):
 
     conn = sqlite3.connect("quotes.db")
@@ -38,7 +38,8 @@ def save_favorite(quote, author, category):
 
     conn.commit()
 
-    conn.close()    
+    conn.close() 
+       
     
 def get_favorites():
 
@@ -56,6 +57,7 @@ def get_favorites():
 
     return favorites
 
+
 def delete_favorite(id):
 
     conn = sqlite3.connect("quotes.db")
@@ -68,5 +70,5 @@ def delete_favorite(id):
     """, (id,))
 
     conn.commit()
-
+    
     conn.close()
