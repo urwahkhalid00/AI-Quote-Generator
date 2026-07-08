@@ -10,6 +10,8 @@ import requests
 
 app = Flask(__name__)
 
+app.secret_key = "my_secret_key"
+
 categories = [
     {"name": "Love", "value": "love"},
     {"name": "Inspirational", "value": "inspirational"},
