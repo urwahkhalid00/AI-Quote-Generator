@@ -56,9 +56,11 @@ def favorite():
 
     category = request.form["category"]
 
-    save_favorite(quote, author, category)
+    if not quote_exists(quote):
 
-    return redirect(url_for("home"))
+       save_favorite(quote, author, category)
+
+    return redirect(url_for("favorites"))
 
 @app.route("/favorites")
 def favorites():
