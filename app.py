@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from database import (
     create_database,
     save_favorite,
@@ -61,6 +61,12 @@ def favorite():
     if not quote_exists(quote):
 
        save_favorite(quote, author, category)
+
+       flash("Quote saved successfully!", "success")
+
+    else:
+
+       flash("This quote is already in your favorites.", "warning")
 
     return redirect(url_for("favorites"))
 
