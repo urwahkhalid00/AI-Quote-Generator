@@ -3,7 +3,8 @@ from database import (
     create_database,
     save_favorite,
     get_favorites,
-    delete_favorite
+    delete_favorite,
+    quote_exists
 )
 import requests
 
