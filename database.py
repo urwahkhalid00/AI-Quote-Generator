@@ -72,3 +72,21 @@ def delete_favorite(id):
     conn.commit()
     
     conn.close()
+    
+def quote_exists(quote):
+
+    conn = sqlite3.connect("quotes.db")
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT id
+        FROM favorites
+        WHERE quote = ?
+    """, (quote,))
+
+    result = cursor.fetchone()
+
+    conn.close()
+
+    return result
