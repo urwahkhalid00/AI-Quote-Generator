@@ -878,6 +878,21 @@ option{
 
 }
 
+.search-select{
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+}
 
 
 
