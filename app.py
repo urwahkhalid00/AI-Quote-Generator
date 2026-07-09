@@ -4,8 +4,10 @@ from database import (
     save_favorite,
     get_favorites,
     delete_favorite,
-    quote_exists
+    quote_exists,
+    search_favorites
 )
+
 import requests
 
 app = Flask(__name__)

@@ -91,3 +91,21 @@ def quote_exists(quote):
 
     return result
 
+def search_favorites(search):
+
+    conn = sqlite3.connect("quotes.db")
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT * FROM favorites
+        WHERE quote LIKE ?
+        OR author LIKE ?
+        OR category LIKE ?
+    """, (f"%{search}%", f"%{search}%", f"%{search}%"))
+
+    favorites = cursor.fetchall()
+
+    conn.close()
+
+    return favorites
