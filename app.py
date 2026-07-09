@@ -1,4 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    flash,
+    Response
+)
+import csv
+import io
 from database import (
     create_database,
     save_favorite,
@@ -94,6 +104,47 @@ def favorites():
         category=category,
 
         categories=categories
+    )
+
+
+@app.route("/export")
+def export():
+
+    quotes = get_favorites()
+
+    output = io.StringIO()
+
+    writer = csv.writer(output)
+
+    writer.writerow(["Quote", "Author", "Category"])
+
+    for quote in quotes:
+
+        writer.writerow([
+
+            quote[1],
+            quote[2],
+            quote[3]
+
+        ])
+
+    csv_data = output.getvalue()
+
+    output.close()
+
+    return Response(
+
+        csv_data,
+
+        mimetype="text/csv",
+
+        headers={
+
+            "Content-Disposition":
+            "attachment; filename=favorites.csv"
+
+        }
+
     )
     
 @app.route("/delete/<int:id>", methods=["POST"])
