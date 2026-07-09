@@ -5,7 +5,8 @@ from database import (
     get_favorites,
     delete_favorite,
     quote_exists,
-    search_favorites
+    search_favorites,
+    filter_favorites
 )
 
 import requests
@@ -78,19 +79,22 @@ def favorites():
 
     search = request.args.get("search", "")
 
-    if search:
+    category = request.args.get("category", "all")
 
-        quotes = search_favorites(search)
-
-    else:
-
-        quotes = get_favorites()
+    quotes = filter_favorites(search, category)
 
     return render_template(
+
         "favorites.html",
+
         quotes=quotes,
-        search=search
-    )  
+
+        search=search,
+
+        category=category,
+
+        categories=categories
+    )
     
 @app.route("/delete/<int:id>", methods=["POST"])
 def delete(id):
