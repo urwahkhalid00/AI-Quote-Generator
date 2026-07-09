@@ -34,6 +34,24 @@
 
             </p>
 
+            <form action="{{ url_for('favorites') }}" method="GET" class="search-form">
+
+                <input
+                   type="text"
+                   name="search"
+                   placeholder="Search by quote, author or category..."
+                   value="{{ search }}"
+                   class="search-input"
+                 >
+
+             <button type="submit" class="search-btn">
+
+                Search
+
+             </button>
+
+            </form>
+
             {% with messages = get_flashed_messages(with_categories=true) %}
 
                 {% if messages %}
