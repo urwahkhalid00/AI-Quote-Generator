@@ -36,19 +36,41 @@
 
             <form action="{{ url_for('favorites') }}" method="GET" class="search-form">
 
-                <input
-                   type="text"
-                   name="search"
-                   placeholder="Search by quote, author or category..."
-                   value="{{ search }}"
-                   class="search-input"
+               <input
+                type="text"
+                name="search"
+                placeholder="Search quotes..."
+                value="{{ search }}"
+                class="search-input"
                  >
 
-             <button type="submit" class="search-btn">
+               <select name="category" class="search-select">
 
-                Search
+                <option value="all"
+                  {% if category == "all" %}selected{% endif %}>
+                    All Categories
+                </option>
 
-             </button>
+                  {% for item in categories %}
+
+                <option
+                  value="{{ item.value }}"
+                   {% if category == item.value %}selected{% endif %}
+                 >
+
+                   {{ item.name }}
+
+                </option>
+
+                 {% endfor %}
+
+               </select>
+
+              <button type="submit" class="search-btn">
+
+                  Search
+
+               </button>
 
             </form>
 
