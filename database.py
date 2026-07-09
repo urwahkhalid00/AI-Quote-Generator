@@ -109,3 +109,45 @@ def search_favorites(search):
     conn.close()
 
     return favorites
+
+
+def filter_favorites(search, category):
+
+    conn = sqlite3.connect("quotes.db")
+
+    cursor = conn.cursor()
+
+    query = """
+        SELECT * FROM favorites
+        WHERE 1=1
+    """
+
+    values = []
+
+    if search:
+
+        query += """
+            AND (
+                quote LIKE ?
+                OR author LIKE ?
+            )
+        """
+
+        values.extend([
+            f"%{search}%",
+            f"%{search}%"
+        ])
+
+    if category and category != "all":
+
+        query += " AND category = ?"
+
+        values.append(category)
+
+    cursor.execute(query, values)
+
+    favorites = cursor.fetchall()
+
+    conn.close()
+
+    return favorites
