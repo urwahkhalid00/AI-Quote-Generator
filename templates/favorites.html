@@ -128,13 +128,13 @@
 
                     </span>
 
-                    <form action="{{ url_for('delete', id=quote[0]) }}" method="POST">
+                    <form action="{{ url_for('delete', id=quote[0]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this quote?')">
 
-                        <button class="delete-btn" type="submit">
+                      <button class="delete-btn" type="submit">
 
-                            Delete
+                         🗑 Delete
 
-                        </button>
+                      </button>
 
                     </form>
 
