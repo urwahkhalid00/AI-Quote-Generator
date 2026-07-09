@@ -90,3 +90,4 @@ def quote_exists(quote):
     conn.close()
 
     return result
+

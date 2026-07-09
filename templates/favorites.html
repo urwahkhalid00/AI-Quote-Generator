@@ -5,59 +5,126 @@
 
     <meta charset="UTF-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Favorite Quotes</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
 </head>
 
 <body>
-       {% with messages = get_flashed_messages(with_categories=true) %}
 
-       {% if messages %}
+    <div class="container">
 
-          {% for category, message in messages %}
+        <div class="card">
 
-            <div class="flash {{ category }}">
+            <h1>My Favorite Quotes</h1>
 
-                {{ message }}
+            <p class="subtitle">
 
-            </div>
+                Total Saved Quotes: {{ quotes|length }}
 
-           {% endfor %}
+            </p>
 
-        {% endif %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
 
-        {% endwith %}
-    <h1>My Favorite Quotes</h1>
+                {% if messages %}
 
-    <hr>
+                    {% for category, message in messages %}
 
-    {% if quotes %}
+                        <div class="flash {{ category }}">
 
-        {% for quote in quotes %}
+                            {{ message }}
 
-            <h3>{{ quote[1] }}</h3>
+                        </div>
 
-            <p>{{ quote[2] }}</p>
+                    {% endfor %}
 
-            <small>{{ quote[3] }}</small>
-            <form action="{{ url_for('delete', id=quote[0]) }}" method="POST">
+                {% endif %}
 
-                <button type="submit">
+            {% endwith %}
 
-                 Delete
+            {% if quotes %}
 
-                </button>
+                {% for quote in quotes %}
 
-            </form>
-            <hr>
+                <div class="quote-box">
 
-        {% endfor %}
+                    <div class="quote-icon">
 
-    {% else %}
+                        ❝
 
-        <h2>No Favorite Quotes Yet</h2>
+                    </div>
 
-    {% endif %}
+                    <h2>
+
+                        {{ quote[1] }}
+
+                    </h2>
+
+                    <h3>
+
+                        — {{ quote[2] }}
+
+                    </h3>
+
+                    <span class="category-badge">
+
+                        {{ quote[3] }}
+
+                    </span>
+
+                    <form action="{{ url_for('delete', id=quote[0]) }}" method="POST">
+
+                        <button class="delete-btn" type="submit">
+
+                            Delete
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="quote-box">
+
+                    <h2>
+
+                        No Favorite Quotes Yet
+
+                    </h2>
+
+                    <p>
+
+                        Save your first favorite quote from the home page.
+
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+            <a href="{{ url_for('home') }}" class="back-btn">
+
+                ← Back to Home
+
+            </a>
+
+        </div>
+
+    </div>
 
 </body>
 
