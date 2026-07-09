@@ -1,5 +1,7 @@
 import sqlite3
 
+from datetime import datetime
+
 def create_database():
 
     conn = sqlite3.connect("quotes.db")
@@ -9,14 +11,15 @@ def create_database():
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS favorites(
 
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+           id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-            quote TEXT NOT NULL,
+           quote TEXT NOT NULL,
 
-            author TEXT NOT NULL,
+           author TEXT NOT NULL,
 
-            category TEXT NOT NULL
+          category TEXT NOT NULL,
 
+          created_at TEXT NOT NULL
         )
     """)
 
@@ -31,10 +34,20 @@ def save_favorite(quote, author, category):
 
     cursor = conn.cursor()
 
+    created_at = datetime.now().strftime("%d-%m-%Y %I:%M %p")
+
     cursor.execute("""
-        INSERT INTO favorites (quote, author, category)
-        VALUES (?, ?, ?)
-    """, (quote, author, category))
+    INSERT INTO favorites
+    (quote, author, category, created_at)
+
+    VALUES (?, ?, ?, ?)
+    """,
+   (
+    quote,
+    author,
+    category,
+    created_at
+   ))
 
     conn.commit()
 
