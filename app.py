@@ -72,15 +72,25 @@ def favorite():
 
     return redirect(url_for("favorites"))
 
+
 @app.route("/favorites")
 def favorites():
 
-    quotes = get_favorites()
+    search = request.args.get("search", "")
+
+    if search:
+
+        quotes = search_favorites(search)
+
+    else:
+
+        quotes = get_favorites()
 
     return render_template(
         "favorites.html",
-        quotes=quotes
-    )
+        quotes=quotes,
+        search=search
+    )  
     
 @app.route("/delete/<int:id>", methods=["POST"])
 def delete(id):
