@@ -74,6 +74,12 @@
 
             </form>
 
+            <a href="{{ url_for('export') }}" class="export-btn">
+
+              📥 Export Favorites
+
+            </a>
+
             {% with messages = get_flashed_messages(with_categories=true) %}
 
                 {% if messages %}
