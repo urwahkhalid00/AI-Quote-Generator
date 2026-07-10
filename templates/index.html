@@ -133,7 +133,8 @@
                     📋 Copy
 
                 </button>
-
+             
+                {% if quote %}
                 <form action="/favorite" method="POST">
 
                     <input type="hidden" name="quote" value="{{ quote }}">
@@ -149,6 +150,8 @@
                    </button>
 
                 </form>
+
+                {% endif %}
 
                 <button class="action-btn" id="new-quote-btn">
 
