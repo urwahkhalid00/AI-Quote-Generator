@@ -19,6 +19,7 @@ from database import (
     filter_favorites
 )
 
+# import os
 import requests
 
 app = Flask(__name__)
@@ -159,3 +160,12 @@ if __name__ == "__main__":
     create_database()
 
     app.run(debug=True)
+
+
+# if __name__ == "__main__":
+
+#     print(os.path.abspath("quotes.db"))
+
+#     create_database()
+
+#     app.run(debug=True)
