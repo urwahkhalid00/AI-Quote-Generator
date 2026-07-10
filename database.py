@@ -29,7 +29,12 @@ def create_database():
     
     
 def save_favorite(quote, author, category):
-
+    
+    # print("SAVE_FAVORITE CALLED")
+    # print("Quote:", quote)
+    # print("Author:", author)
+    # print("Category:", category)
+    
     conn = sqlite3.connect("quotes.db")
 
     cursor = conn.cursor()
