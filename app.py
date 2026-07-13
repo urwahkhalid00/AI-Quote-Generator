@@ -88,33 +88,17 @@ def favorite():
 @app.route("/get_quote", methods=["POST"])
 def get_quote():
 
-    category = request.json.get("category")
+    url = "https://zenquotes.io/api/random"
 
-    url = "https://quotes-db.vercel.app/api/quotes"
-
-    response = requests.get(
-        url,
-        params={"category": category},
-        timeout=10
-    )
+    response = requests.get(url)
 
     data = response.json()
 
-    if data:
-
-        return jsonify({
-
-            "quote": data[0]["quote"],
-
-            "author": data[0]["author"]
-
-        })
-
     return jsonify({
 
-        "quote": "No quote found.",
+        "quote": data[0]["q"],
 
-        "author": "Unknown"
+        "author": data[0]["a"]
 
     })
 
