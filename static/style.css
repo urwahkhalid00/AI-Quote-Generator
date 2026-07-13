@@ -557,7 +557,10 @@ option{
 }
 
 .action-btn{
-
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     padding:13px 24px;
 
     border:none;
