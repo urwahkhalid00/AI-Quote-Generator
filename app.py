@@ -5,7 +5,8 @@ from flask import (
     redirect,
     url_for,
     flash,
-    Response
+    Response,
+    jsonify
 )
 import csv
 import io
@@ -84,6 +85,38 @@ def favorite():
 
     return redirect(url_for("favorites"))
 
+@app.route("/get_quote", methods=["POST"])
+def get_quote():
+
+    category = request.json.get("category")
+
+    url = "https://quotes-db.vercel.app/api/quotes"
+
+    response = requests.get(
+        url,
+        params={"category": category},
+        timeout=10
+    )
+
+    data = response.json()
+
+    if data:
+
+        return jsonify({
+
+            "quote": data[0]["quote"],
+
+            "author": data[0]["author"]
+
+        })
+
+    return jsonify({
+
+        "quote": "No quote found.",
+
+        "author": "Unknown"
+
+    })
 
 @app.route("/favorites")
 def favorites():
