@@ -91,26 +91,34 @@ const newQuoteBtn = document.getElementById("new-quote-btn");
 
 newQuoteBtn.addEventListener("click", async () => {
 
-    const category = document.getElementById("category").value;
+    try {
 
-    const response = await fetch("/get_quote", {
+        const response = await fetch("/get_quote", {
 
-        method: "POST",
+            method: "POST"
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+        });
 
-        body: JSON.stringify({
-            category: category
-        })
+        if (!response.ok) {
 
-    });
+            throw new Error("Server Error");
 
-    const data = await response.json();
+        }
 
-    document.getElementById("quote").innerText = data.quote;
+        const data = await response.json();
 
-    document.getElementById("author").innerText = "— " + data.author;
+        document.getElementById("quote").innerText = data.quote;
+
+        document.getElementById("author").innerText = "— " + data.author;
+
+    }
+
+    catch (error) {
+
+        alert("❌ Unable to fetch a new quote.\nPlease try again.");
+
+        console.log(error);
+
+    }
 
 });
