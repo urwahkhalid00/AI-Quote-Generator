@@ -115,7 +115,7 @@ newQuoteBtn.addEventListener("click", async () => {
 
     catch (error) {
 
-        alert("❌ Unable to fetch a new quote.\nPlease try again.");
+        alert(" Unable to fetch a new quote.\nPlease try again.");
 
         console.log(error);
 
