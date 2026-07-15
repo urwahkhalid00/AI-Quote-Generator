@@ -49,12 +49,22 @@ def home():
 
         url = f"https://zenquotes.io/api/random"
 
-        response = requests.get(url)
+        try:
 
-        data = response.json()
+            response = requests.get(url, timeout=10)
 
-        quote = data[0]["q"]
-        author = data[0]["a"]
+            response.raise_for_status()
+
+            data = response.json()
+
+            quote = data[0]["q"]
+
+            author = data[0]["a"]
+
+        except requests.exceptions.RequestException:
+
+           quote = "Unable to fetch quote. Please try again."
+           author = "System"
 
     return render_template(
         "index.html",
