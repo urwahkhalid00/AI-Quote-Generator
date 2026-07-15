@@ -87,13 +87,18 @@ form.addEventListener("submit", () => {
 // New Quote
 // ===============================
 
+// ===============================
+// New Quote
+// ===============================
+
 const newQuoteBtn = document.getElementById("new-quote-btn");
 
 newQuoteBtn.addEventListener("click", async () => {
 
     try {
-        newQuoteBtn.innerText = "⏳ Loading...";
 
+        // Loading State
+        newQuoteBtn.innerText = "⏳ Loading...";
         newQuoteBtn.disabled = true;
 
         const response = await fetch("/get_quote", {
@@ -110,6 +115,7 @@ newQuoteBtn.addEventListener("click", async () => {
 
         const data = await response.json();
 
+        // Update Quote
         document.getElementById("quote").innerText = data.quote;
 
         document.getElementById("author").innerText = "— " + data.author;
@@ -118,9 +124,17 @@ newQuoteBtn.addEventListener("click", async () => {
 
     catch (error) {
 
-        alert(" Unable to fetch a new quote.\nPlease try again.");
+        alert("❌ Unable to fetch a new quote.\nPlease try again.");
 
         console.log(error);
+
+    }
+
+    finally {
+
+        // Button ko hamesha normal state mein wapas lao
+        newQuoteBtn.innerText = "🔄 New Quote";
+        newQuoteBtn.disabled = false;
 
     }
 
