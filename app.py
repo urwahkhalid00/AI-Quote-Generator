@@ -63,8 +63,8 @@ def home():
 
         except requests.exceptions.RequestException:
 
-           quote = "Unable to fetch quote. Please try again."
-           author = "System"
+           quote = "Unable to fetch a quote at the moment. Please try again in a few moments."
+           author = ""
 
     return render_template(
         "index.html",
