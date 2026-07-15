@@ -92,6 +92,9 @@ const newQuoteBtn = document.getElementById("new-quote-btn");
 newQuoteBtn.addEventListener("click", async () => {
 
     try {
+        newQuoteBtn.innerText = "⏳ Loading...";
+
+        newQuoteBtn.disabled = true;
 
         const response = await fetch("/get_quote", {
 
